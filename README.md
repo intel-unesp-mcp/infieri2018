@@ -36,3 +36,4 @@ Running on target: phi06
 testHW.c
 ```
 
+Nbody example with offload for xeon phi knc can be used without changes in xeon phi knl
