@@ -130,3 +130,35 @@ testHW.c
 ```
 
 Nbody example with offload for xeon phi knc can be used without changes in xeon phi knl
+
+## MPI
+
+### MPI benchmark
+
+regular TCP/IP connection
+```
+export I_MPI_FABRICS=TCP
+mpirun -host phi03 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv : -host phi01 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv
+```
+regular TCP/IP connection using Omni-Path IP over IB abstraction
+
+```
+export I_MPI_FABRICS=TCP
+mpirun -host 10.0.0.3 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv : -host 10.0.0.1 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv
+```
+
+PSM2 protocol in top of Omni-path network:
+
+```
+unset I_MPI_FABRICS
+mpirun -PSM2 -host 10.0.0.3 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv : -host 10.0.0.1 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv
+```
+### Monitoring Performance of MPI Application
+
+In order to take mode information about performance of a MPI application you can use APS (Application Performance Snapshot), that comes with Vtune.
+
+Execute MPI application with APS
+
+time mpirun -PSM2 -host 10.0.0.3 -n 30 aps ~/mpi/mpi_wave : -host 10.0.0.1 -n 30 ~/mpi/mpi_wave
+aps --report=/home/silvio/mpi/aps_result_20180309
+
