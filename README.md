@@ -16,6 +16,18 @@ cat autovec.optrpt
 First loop vectorize automatically 
 Second loop can not be vectorized by compiler because it presents depencies 
 
+### Vectorization workflow
+
+
+#### Survey Target
+
+
+#### Guided Vectorization
+
+
+#### Memory Layout
+
+
 ## OpenMP
 
 ### 1. OpenMP Directives
