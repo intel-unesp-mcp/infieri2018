@@ -2,18 +2,24 @@
 
 ## OpenMP
 
-directive example #pragma omp parallel for
-
+### OpenMP Directives
+  
+  Example of using one pragma to distribute several iterations of a single loops into threads:
+  
+  #pragma omp parallel for
+ 
 1. The application has the objective of 
 
-2. Identify the most time consuming loop using Intel Advisor
+Execute the serial version of this application:
 
 ```
 icpc -O3 -g -fopenmp  sum.cpp -o sum
 time ./sum < sum2.in
 ```
 
-Put the #pragma omp parallel for in top of most time consuming loop of this program.
+2. Identify the most time consuming loop using Intel Advisor
+
+3. Put the #pragma omp parallel for in top of most time consuming loop of this program.
 
 ```
 icpc -O3 -g -fopenmp  sum.cpp -o sum
