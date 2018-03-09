@@ -21,11 +21,13 @@ Second loop can not be vectorized by compiler because it presents depencies
 
 #### Survey Target
 
+#### Check Dependencies
 
-#### Guided Vectorization
+##### Guided Vectorization
 
+#### Memory Access Patterns
 
-#### Memory Layout
+##### Memory Layout
 
 
 ## OpenMP
