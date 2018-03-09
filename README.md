@@ -36,4 +36,80 @@ Running on target: phi06
 testHW.c
 ```
 
+OpenMP
+directive example #pragma omp parallel for
+
+The application has the objective of 
+
+Identify the most time consuming loop using Intel Advisor
+
+```
+icpc -O3 -g -fopenmp  sum.cpp -o sum
+time ./sum < sum2.in
+```
+
+Put the #pragma omp parallel for in top of most time consuming loop of this program.
+
+```
+icpc -O3 -g -fopenmp  sum.cpp -o sum
+time ./sum < sum.in
+```
+put the pragma on line 11
+```
+#ragma omp parallel for	
+```
+Executing several times returns different answers, 
+
+
+there is a race condition on variable digits
+
+put a lock to solve the problem.
+```
+omp_lock_t lck;
+
+//omp_init_lock(&lck);
+omp_init_lock_with_hint(&lck, omp_lock_hint_speculative);
+
+sum(output, d, n);
+
+omp_destroy_lock(&lck);
+
+```
+
+and lock set and unset 
+
+```
+      p_set_lock(&lck); 
+			digits[digit] += div;
+      omp_unset_lock(&lck); 
+```
+
+Execute the application again:
+
+```
+icpc -O3 -g -fopenmp  sum.cpp -o sum
+time ./sum < sum2.in
+```
+
+Have you noticed a drop in performance of your program?
+
+Try use hints to create locks
+
+```
+change 
+omp_init_lock(&lck);
+by
+omp_init_lock_with_hint(&lck, omp_lock_hint_speculative);
+
+```
+
+Execute the application again:
+
+```
+icpc -O3 -g -fopenmp  sum.cpp -o sum
+time ./sum < sum2.in
+```
+
+
+
 Nbody example with offload for xeon phi knc can be used without changes in xeon phi knl
