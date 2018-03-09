@@ -1,5 +1,9 @@
 # infieri 2018
 
+## Architecture
+
+## Vectorization
+
 ## OpenMP
 
 ### 1. OpenMP Directives
@@ -133,7 +137,6 @@ testHW.c
 
   Example with offload for xeon phi knc can be used without changes in xeon phi knl
 
-
 ## MPI
 
 ### 1. MPI benchmark
@@ -165,3 +168,4 @@ Execute MPI application with APS
 time mpirun -PSM2 -host 10.0.0.3 -n 30 aps ~/mpi/mpi_wave : -host 10.0.0.1 -n 30 ~/mpi/mpi_wave
 aps --report=/home/silvio/mpi/aps_result_20180309
 
+## OpenMP/MPI Optimization
