@@ -2,13 +2,13 @@
 
 ## OpenMP
 
-### OpenMP Directives
+### 1. OpenMP Directives
   
   Example of using one pragma to distribute several iterations of a single loops into threads:
   
   #pragma omp parallel for
  
-1. The application has the objective of 
+ The application has the objective of 
 
 Execute the serial version of this application:
 
@@ -17,9 +17,9 @@ icpc -O3 -g -fopenmp  sum.cpp -o sum
 time ./sum < sum2.in
 ```
 
-2. Identify the most time consuming loop using Intel Advisor
+ Identify the most time consuming loop using Intel Advisor
 
-3. Put the #pragma omp parallel for in top of most time consuming loop of this program.
+ Put the #pragma omp parallel for in top of most time consuming loop of this program.
 
 ```
 icpc -O3 -g -fopenmp  sum.cpp -o sum
@@ -31,7 +31,7 @@ put the pragma on line 11
 ```
 Executing several times returns different answers, 
 
-### Synchronization
+### 2. Synchronization
 
 there is a race condition on variable digits
 
@@ -89,7 +89,7 @@ icpc -O3 -g -fopenmp  sum.cpp -o sum
 time ./sum < sum2.in
 ```
 
-### Offload
+### 3. Offload
 
 The offload is a resource to offload a region of code to a device (GPU, Xeon Phi KNC or KNL)
 
@@ -129,11 +129,14 @@ Running on target: phi06
 testHW.c
 ```
 
-Nbody example with offload for xeon phi knc can be used without changes in xeon phi knl
+### 4. Nbody 
+
+  Example with offload for xeon phi knc can be used without changes in xeon phi knl
+
 
 ## MPI
 
-### MPI benchmark
+### 1. MPI benchmark
 
 regular TCP/IP connection
 ```
@@ -153,7 +156,7 @@ PSM2 protocol in top of Omni-path network:
 unset I_MPI_FABRICS
 mpirun -PSM2 -host 10.0.0.3 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv : -host 10.0.0.1 -n 1 /opt/intel/impi/2018.1.163/bin64/IMB-MPI1 Sendrecv
 ```
-### Monitoring Performance of MPI Application
+### 2. Monitoring Performance of MPI Application
 
 In order to take mode information about performance of a MPI application you can use APS (Application Performance Snapshot), that comes with Vtune.
 
