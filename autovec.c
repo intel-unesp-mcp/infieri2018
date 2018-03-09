@@ -17,5 +17,10 @@ int main(){
     // This loop will be auto-vectorized
     for (i=0; i<n; i++)
       A[i]+=B[i]*randV;
+    
+    // This loop will not be auto-vectorized. A[i-1] dependency
+    for (i=2; i<n; i++)
+      A[i]=A[i-1]+B[i]-i*randV;
+
   }
 }
