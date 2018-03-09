@@ -4,6 +4,22 @@
 
 ## Vectorization
 
+### Auto-vectorization
+
+```
+icc autovec.c -o autovec -vec-report=6
+cat autovec.optrpt
+
+icc autovec.c -o autovec -vec-report=6 -O3
+cat autovec.optrpt
+
+icc autovec.c -o autovec -vec-report=6 -g -O3
+cat autovec.optrpt
+
+icc autovec.c -o autovec -vec-report=6 -g -O3 -xhost
+cat autovec.optrpt
+```
+
 ## OpenMP
 
 ### 1. OpenMP Directives
