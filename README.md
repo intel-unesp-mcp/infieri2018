@@ -1,4 +1,4 @@
-# infieri2018
+# infieri 2018
 
 ## OpenMP
 
