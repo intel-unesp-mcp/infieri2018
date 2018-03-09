@@ -31,28 +31,36 @@ put the pragma on line 11
 ```
 Executing several times returns different answers, 
 
+### Synchronization
 
 there is a race condition on variable digits
 
 put a lock to solve the problem.
+
+1. declare this variable after "using namespace std;"
+
 ```
 omp_lock_t lck;
+```
 
-//omp_init_lock(&lck);
-omp_init_lock_with_hint(&lck, omp_lock_hint_speculative);
+put this before and after calling function sum
 
+```
+...
+omp_init_lock(&lck);
 sum(output, d, n);
-
 omp_destroy_lock(&lck);
+...
 
 ```
 
-and lock set and unset 
+put (lock set and lock unset ) before and after change the variable digits:
+ 
 
 ```
-      p_set_lock(&lck); 
-			digits[digit] += div;
-      omp_unset_lock(&lck); 
+  omp_set_lock(&lck); 
+  digits[digit] += div;
+  omp_unset_lock(&lck); 
 ```
 
 Execute the application again:
@@ -81,9 +89,11 @@ icpc -O3 -g -fopenmp  sum.cpp -o sum
 time ./sum < sum2.in
 ```
 
+### Offload
 
+The offload is a resource to offload a region of code to a device (GPU, Xeon Phi KNC or KNL)
 
-Offload Over Fabric
+offload Over Fabric
 
 
 how to setup xeon phi node for offload over fabric:
