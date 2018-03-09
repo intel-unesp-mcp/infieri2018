@@ -6,19 +6,13 @@
 
 ### Auto-vectorization
 
+1. Compile autovec application
+
 ```
-icc autovec.c -o autovec -vec-report=6
-cat autovec.optrpt
-
-icc autovec.c -o autovec -vec-report=6 -O3
-cat autovec.optrpt
-
-icc autovec.c -o autovec -vec-report=6 -g -O3
-cat autovec.optrpt
-
-icc autovec.c -o autovec -vec-report=6 -g -O3 -xhost
+icc autovec.c -o autovec -qopt-report=5 -g -O3
 cat autovec.optrpt
 ```
+
 
 ## OpenMP
 
