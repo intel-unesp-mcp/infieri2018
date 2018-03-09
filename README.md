@@ -13,6 +13,8 @@ icc autovec.c -o autovec -qopt-report=5 -g -O3
 cat autovec.optrpt
 ```
 
+First loop vectorize automatically 
+Second loop can not be vectorized by compiler because it presents depencies 
 
 ## OpenMP
 
